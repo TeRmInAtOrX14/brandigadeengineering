@@ -1,15 +1,15 @@
 import { motion } from 'framer-motion';
-import { ArrowRightIcon, CalendarIcon, CodeIcon, DesktopIcon, FactoryIcon, FlaskIcon } from '@radix-ui/react-icons';
+import { FaDesktop, FaIndustry, FaFlask, FaRegCalendarAlt, FaArrowRight, FaCode, FaCogs, FaUniversity } from 'react-icons/fa';
 
 const sectors = [
-  { icon: <DesktopIcon className='w-8 h-8' />, label: 'Pharmaceutical' },
-  { icon: <FactoryIcon className='w-8 h-8' />, label: 'Medical Devices' },
-  { icon: <FlaskIcon className='w-8 h-8' />, label: 'Healthcare' },
-  { icon: <CalendarIcon className='w-8 h-8' />, label: 'Laboratories' },
-  { icon: <ArrowRightIcon className='w-8 h-8' />, label: 'Food Processing' },
-  { icon: <CodeIcon className='w-8 h-8' />, label: 'Biotechnology' },
-  { icon: <DesktopIcon className='w-8 h-8' />, label: 'Manufacturing' },
-  { icon: <FactoryIcon className='w-8 h-8' />, label: 'Research Facilities' },
+  { icon: <FaDesktop className='w-8 h-8' />, label: 'Pharmaceutical' },
+  { icon: <FaIndustry className='w-8 h-8' />, label: 'Medical Devices' },
+  { icon: <FaFlask className='w-8 h-8' />, label: 'Healthcare' },
+  { icon: <FaRegCalendarAlt className='w-8 h-8' />, label: 'Laboratories' },
+  { icon: <FaArrowRight className='w-8 h-8' />, label: 'Food Processing' },
+  { icon: <FaCode className='w-8 h-8' />, label: 'Biotechnology' },
+  { icon: <FaCogs className='w-8 h-8' />, label: 'Manufacturing' },
+  { icon: <FaUniversity className='w-8 h-8' />, label: 'Research Facilities' },
 ];
 
 export default function Industries() {

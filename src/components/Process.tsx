@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRightIcon, CheckCircleIcon } from '@radix-ui/react-icons';
+import { HiCheckCircle } from 'react-icons/hi';
 
 const steps = [
   { title: 'Inspection', description: 'Thorough initial assessment of equipment.' },
@@ -29,7 +29,7 @@ export default function Process() {
             >
               {/* Circle with icon */}
               <div className="flex-shrink-0 w-12 h-12 rounded-full bg-accent flex items-center justify-center text-white">
-                <CheckCircleIcon className="w-6 h-6" />
+                <HiCheckCircle className="w-6 h-6" />
               </div>
               {/* Content */}
               <div className="ml-6">

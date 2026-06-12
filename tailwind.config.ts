@@ -22,6 +22,12 @@ const config: Config = {
         lightGray: '#F5F7FA',
         background: '#FFFFFF',
       },
+      textColor: {
+        accent: '#0066FF',
+      },
+      borderColor: {
+        accent: '#0066FF',
+      },
       fontFamily: {
         heading: ['"Inter Tight"', ...defaultTheme.fontFamily.sans],
         body: ['Inter', ...defaultTheme.fontFamily.sans],
@@ -39,6 +45,10 @@ const config: Config = {
       },
       backdropBlur: {
         xs: '2px',
+        sm: '4px',
+        md: '8px',
+        lg: '12px',
+        xl: '16px',
       },
       boxShadow: {
         glass: '0 4px 30px rgba(0,0,0,0.1)',

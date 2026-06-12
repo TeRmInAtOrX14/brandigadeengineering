@@ -5,7 +5,8 @@
 /* Custom utilities */
 @layer utilities {
   .glass {
-    @apply bg-white/30 backdrop-blur-md rounded-xl shadow-glass border border-white/20;
+    background-color: rgba(255,255,255,0.3);
+    backdrop-filter: blur(8px);
   }
   .accent-blue {
     @apply text-accent ring-accent transition-colors;

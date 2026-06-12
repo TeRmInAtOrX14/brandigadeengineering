@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { MenuIcon, XIcon } from '@radix-ui/react-icons';
+import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi';
 import { useState } from 'react';
 
 export default function Header() {
