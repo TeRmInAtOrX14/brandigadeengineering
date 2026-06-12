@@ -22,16 +22,12 @@ const config: Config = {
         lightGray: '#F5F7FA',
         background: '#FFFFFF',
       },
-      textColor: {
-        accent: '#0066FF',
-      },
-      borderColor: {
-        accent: '#0066FF',
-      },
+
       fontFamily: {
-        heading: ['"Inter Tight"', ...defaultTheme.fontFamily.sans],
+        heading: ['Inter Tight', ...defaultTheme.fontFamily.sans],
         body: ['Inter', ...defaultTheme.fontFamily.sans],
       },
+
       fontWeight: {
         heading: '600', // 500-700 range
         body: '400',
@@ -58,7 +54,7 @@ const config: Config = {
         pulseBlue: {
           '0%, 100%': { boxShadow: '0 0 0 0 rgba(0,102,255,0.4)' },
           '50%': { boxShadow: '0 0 0 10px rgba(0,102,255,0)' },
-        },
+ 
       },
       animation: {
         pulseBlue: 'pulseBlue 2s infinite',
