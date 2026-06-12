@@ -9,9 +9,11 @@ const interTight = Inter({ subsets: ['latin'], weight: '600', variable: '--font-
 
 export const metadata: Metadata = {
   title: 'Brandigade Engineering – Precision Calibration & Validation',
-  description: 'Premium engineering services: calibration, validation, metrology, and ISO‑compliant testing.',
+  description:
+    'Premium engineering services: calibration, validation, metrology, HVAC, stability chambers, and ISO‑compliant testing for pharmaceutical, healthcare, and industrial sectors.',
   icons: {
-    icon: '/favicon.ico',
+    icon: '/FAVICON.png',
+    apple: '/FAVICON.png',
   },
 };
 
@@ -21,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${interTight.variable}`}>      
+    <html lang="en" className={`${inter.variable} ${interTight.variable}`}>
       <body className="font-body bg-background text-primary antialiased">
         <LenisProvider>{children}</LenisProvider>
       </body>

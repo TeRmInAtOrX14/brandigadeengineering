@@ -1,40 +1,18 @@
 'use client';
 import { motion } from 'framer-motion';
+import { FaStar } from 'react-icons/fa';
+import { HiOutlineChatAlt2 } from 'react-icons/hi';
 
-const testimonials = [
-  {
-    name: 'Dr. Alice Morgan',
-    title: 'Head of QA, PharmaCo',
-    quote: 'Brandigade\'s calibration services are unmatched – precision you can trust.',
-    initials: 'AM',
-    color: '#0066FF',
-  },
-  {
-    name: 'John Patel',
-    title: 'Operations Manager, MedTech Ltd.',
-    quote: 'Their validation process saved us weeks of downtime. Highly professional.',
-    initials: 'JP',
-    color: '#0044CC',
-  },
-  {
-    name: 'Maria Silva',
-    title: 'Lab Director, BioResearch',
-    quote: 'Professional, fast, and always ISO‑compliant. Our go-to calibration partner.',
-    initials: 'MS',
-    color: '#0033AA',
-  },
-  {
-    name: 'Ahmed Al-Hassan',
-    title: 'QC Manager, Gulf Pharma',
-    quote: 'From autoclave validation to temperature mapping – Brandigade delivers every time.',
-    initials: 'AH',
-    color: '#005CE6',
-  },
+const stats = [
+  { val: '5000+', label: 'Instruments Calibrated' },
+  { val: '98%', label: 'Customer Satisfaction' },
+  { val: '24h', label: 'Response Time' },
+  { val: '100%', label: 'ISO Compliant' },
 ];
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-24 bg-white">
+    <section id="testimonials" className="py-24 bg-[#F5F7FA]">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           className="text-center mb-14"
@@ -43,54 +21,81 @@ export default function Testimonials() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-sm font-semibold tracking-widest text-[#0066FF] uppercase mb-3">Testimonials</p>
+          <p className="text-sm font-semibold tracking-widest text-[#0066FF] uppercase mb-3">Our Track Record</p>
           <h2
             className="text-4xl md:text-5xl font-bold text-[#0B0B0B]"
             style={{ fontFamily: 'Inter Tight, Inter, sans-serif' }}
           >
-            What Our Clients Say
+            Trusted by the Industry
           </h2>
+          <p className="mt-4 text-lg text-[#555] max-w-xl mx-auto">
+            Years of delivering precision calibration, validation, and engineering services across regulated industries.
+          </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {testimonials.map((t, i) => (
+        {/* Stats row */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          {stats.map((s, i) => (
             <motion.div
-              key={i}
-              className="p-6 rounded-2xl border border-[#EBEBEB] bg-[#F5F7FA] hover:border-[#0066FF] hover:bg-white transition-all duration-300 flex flex-col justify-between"
-              style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}
-              whileHover={{ y: -4, boxShadow: '0 12px 40px rgba(0,102,255,0.1)' }}
-              initial={{ opacity: 0, y: 24 }}
+              key={s.label}
+              className="bg-white rounded-2xl p-8 text-center border border-[#EBEBEB]"
+              style={{ boxShadow: '0 2px 16px rgba(0,0,0,0.04)' }}
+              whileHover={{ y: -4, boxShadow: '0 12px 40px rgba(0,102,255,0.1)', borderColor: '#0066FF' }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
             >
-              {/* Stars */}
-              <div className="flex gap-1 mb-4">
-                {[...Array(5)].map((_, s) => (
-                  <span key={s} className="text-[#0066FF] text-sm">★</span>
-                ))}
+              <div
+                className="text-4xl md:text-5xl font-bold text-[#0066FF] mb-2"
+                style={{ fontFamily: 'Inter Tight, Inter, sans-serif' }}
+              >
+                {s.val}
               </div>
-
-              <p className="text-sm text-[#444] leading-relaxed flex-1">
-                &ldquo;{t.quote}&rdquo;
-              </p>
-
-              <div className="flex items-center gap-3 mt-5 pt-5 border-t border-[#EBEBEB]">
-                {/* Avatar with initials */}
-                <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0"
-                  style={{ backgroundColor: t.color }}
-                >
-                  {t.initials}
-                </div>
-                <div>
-                  <p className="text-sm font-bold text-[#0B0B0B]">{t.name}</p>
-                  <p className="text-xs text-[#888]">{t.title}</p>
-                </div>
-              </div>
+              <p className="text-sm text-[#666] font-medium">{s.label}</p>
             </motion.div>
           ))}
         </div>
+
+        {/* Star rating + CTA */}
+        <motion.div
+          className="bg-white rounded-3xl p-10 md:p-14 flex flex-col md:flex-row items-center gap-8 border border-[#EBEBEB]"
+          style={{ boxShadow: '0 4px 30px rgba(0,0,0,0.05)' }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="flex-1 text-center md:text-left space-y-4">
+            <div className="flex justify-center md:justify-start gap-1">
+              {[...Array(5)].map((_, i) => (
+                <FaStar key={i} className="text-[#0066FF] text-xl" />
+              ))}
+            </div>
+            <h3
+              className="text-2xl md:text-3xl font-bold text-[#0B0B0B]"
+              style={{ fontFamily: 'Inter Tight, Inter, sans-serif' }}
+            >
+              Have you worked with us?
+            </h3>
+            <p className="text-[#555] text-base max-w-md">
+              We value every client's feedback. Share your experience and help others discover the Brandigade difference.
+            </p>
+          </div>
+          <div className="flex flex-col items-center gap-4">
+            <motion.a
+              href="mailto:info@brandigade.com?subject=Review for Brandigade Engineering"
+              id="leave-review-btn"
+              className="flex items-center gap-2 px-8 py-4 bg-[#0066FF] text-white font-bold text-base rounded-xl whitespace-nowrap"
+              whileHover={{ boxShadow: '0 0 30px rgba(0,102,255,0.4)', scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <HiOutlineChatAlt2 className="text-xl" />
+              Leave a Review
+            </motion.a>
+            <p className="text-xs text-[#AAA]">We read every message</p>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -55,9 +55,11 @@ export default function Footer() {
           <div className="space-y-4">
             <h4 className="text-sm font-bold text-[#0B0B0B] tracking-widest uppercase">Contact</h4>
             <div className="space-y-2 text-sm text-[#555]">
-              <p>info@brandigade.com</p>
-              <p>+1 (800) 555-0199</p>
-              <p>Mon–Fri, 8am – 6pm EST</p>
+              <a href="mailto:info@brandigade.com" className="hover:text-[#0066FF] transition-colors">info@brandigade.com</a>
+              <p>
+                <a href="tel:+923172828003" className="hover:text-[#0066FF] transition-colors font-semibold">+92 317 2828003</a>
+              </p>
+              <p>Mon–Sat, 9am – 6pm</p>
             </div>
             {/* Social */}
             <div className="flex gap-4 pt-2">
