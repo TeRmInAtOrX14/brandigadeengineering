@@ -37,7 +37,7 @@ export default function Header() {
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
-          <div className="relative h-12 w-44">
+          <div className="relative h-24 w-[350px]">
             <Image
               src="/eng.png"
               alt="Brandigade Engineering"
