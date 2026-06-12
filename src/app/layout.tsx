@@ -11,10 +11,6 @@ export const metadata: Metadata = {
   title: 'Brandigade Engineering – Precision Calibration & Validation',
   description:
     'Premium engineering services: calibration, validation, metrology, HVAC, stability chambers, and ISO‑compliant testing for pharmaceutical, healthcare, and industrial sectors.',
-  icons: {
-    icon: '/FAVICON.png',
-    apple: '/FAVICON.png',
-  },
 };
 
 export default function RootLayout({
