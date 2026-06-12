@@ -3,7 +3,7 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 
 /** Tailwind CSS configuration for Brandigade Engineering site. */
 const config: Config = {
-  darkMode: ['class'],
+  darkMode: 'class',
   content: [
     './src/**/*.{js,ts,jsx,tsx}',
     './public/**/*.html',
@@ -18,6 +18,7 @@ const config: Config = {
         lightGray: '#F5F7FA',
         background: '#FFFFFF',
       },
+
 
       // ---- FONTS ----
       fontFamily: {

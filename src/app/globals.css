@@ -1,14 +1,15 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 /* Custom utilities */
 @layer utilities {
   .glass {
-    background-color: rgba(255,255,255,0.3);
+    background-color: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
   }
   .accent-blue {
-    @apply text-accent ring-accent transition-colors;
+    color: #0066FF;
+    transition: color 0.3s ease;
   }
 }

@@ -1,3 +1,4 @@
+"use client";
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi';
@@ -38,7 +39,7 @@ export default function Header() {
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
-          {open ? <XIcon className="w-6 h-6" /> : <MenuIcon className="w-6 h-6" />}
+          {open ? <HiOutlineX className="w-6 h-6" /> : <HiOutlineMenu className="w-6 h-6" />}
         </button>
         {/* Mobile panel */}
         {open && (

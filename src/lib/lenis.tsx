@@ -1,3 +1,5 @@
+'use client';
+
 import Lenis from '@studio-freight/lenis';
 import { useEffect } from 'react';
 
@@ -14,7 +16,7 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
     }
     requestAnimationFrame(raf);
     return () => {
-      // Lenis does not have a destroy method, but cleanup can be added if needed.
+      lenis.destroy?.();
     };
   }, []);
 

@@ -1,51 +1,5 @@
-import '@/styles/globals.css';
+'use client';
 
-export default function Home() {
-  return (
-    <>
-      {/* Header */}
-      <Header />
-
-      {/* Hero Section */}
-      <Hero />
-
-      {/* About */}
-      <About />
-
-      {/* Services */}
-      <Services />
-
-      {/* Industries */}
-      <Industries />
-
-      {/* Interactive 3D Showcase */}
-      <Showcase3D />
-
-      {/* Process Timeline */}
-      <Process />
-
-      {/* Why Choose */}
-      <WhyChoose />
-
-      {/* Certifications */}
-      <Certifications />
-
-      {/* Client Logos Slider */}
-      <ClientSlider />
-
-      {/* Testimonials */}
-      <Testimonials />
-
-      {/* Contact */}
-      <Contact />
-
-      {/* Footer */}
-      <Footer />
-    </>
-  );
-}
-
-// Import all components (they will be generated next)
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import About from '../components/About';
@@ -59,3 +13,23 @@ import ClientSlider from '../components/ClientSlider';
 import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
+
+export default function Home() {
+  return (
+    <>
+      <Header />
+      <Hero />
+      <About />
+      <Services />
+      <Industries />
+      <Showcase3D />
+      <Process />
+      <WhyChoose />
+      <Certifications />
+      <ClientSlider />
+      <Testimonials />
+      <Contact />
+      <Footer />
+    </>
+  );
+}
