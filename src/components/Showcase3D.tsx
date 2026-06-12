@@ -1,9 +1,14 @@
 'use client';
-import { Canvas } from '@react-three/fiber';
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+
+const Canvas = dynamic(
+  () => import('@react-three/fiber').then((mod) => mod.Canvas),
+  { ssr: false }
+);
 
 interface InstrumentProps {
   color?: string;
@@ -50,7 +55,11 @@ export default function Showcase3D() {
           </p>
         </motion.div>
 
-        <div className="h-[500px] rounded-2xl overflow-hidden" style={{ background: 'radial-gradient(ellipse at center, #0d1a2e 0%, #0B0B0B 70%)' }}>
+        {/* 3D Canvas - desktop only */}
+        <div
+          className="h-[500px] rounded-2xl overflow-hidden hidden sm:block"
+          style={{ background: 'radial-gradient(ellipse at center, #0d1a2e 0%, #0B0B0B 70%)' }}
+        >
           <Canvas camera={{ position: [0, 0, 6], fov: 60 }}>
             <ambientLight intensity={0.3} />
             <directionalLight position={[5, 5, 5]} intensity={1} />
@@ -60,12 +69,36 @@ export default function Showcase3D() {
           </Canvas>
         </div>
 
+        {/* Mobile fallback - animated stat cards */}
+        <div className="sm:hidden grid grid-cols-2 gap-4">
+          {[
+            { label: 'Calibrations', value: '5,000+' },
+            { label: 'Accuracy Rate', value: '99.9%' },
+            { label: 'ISO Standards', value: '3 Active' },
+            { label: 'Industries', value: '8+' },
+          ].map((item, i) => (
+            <motion.div
+              key={item.label}
+              className="p-6 rounded-2xl text-center"
+              style={{ background: 'radial-gradient(ellipse at center, #0d1a2e, #0B0B0B)', border: '1px solid #1a3a5c' }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+            >
+              <div className="text-2xl font-bold text-[#0066FF]" style={{ fontFamily: 'Inter Tight, Inter, sans-serif' }}>
+                {item.value}
+              </div>
+              <div className="text-xs text-[#666] mt-1">{item.label}</div>
+            </motion.div>
+          ))}
+        </div>
+
         <motion.p
-          className="mt-6 text-center text-sm text-[#555]"
+          className="mt-8 text-center text-sm text-[#555]"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
         >
           Real-time 3D rendering powered by Three.js & React Three Fiber
         </motion.p>

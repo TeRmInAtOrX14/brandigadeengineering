@@ -1,9 +1,15 @@
 'use client';
-import { Canvas } from '@react-three/fiber';
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+
+// Dynamically import Canvas to disable SSR (required for Three.js / WebGL)
+const Canvas = dynamic(
+  () => import('@react-three/fiber').then((mod) => mod.Canvas),
+  { ssr: false }
+);
 
 function PressureGauge3D() {
   const gaugeRef = useRef<THREE.Group>(null);
@@ -14,14 +20,13 @@ function PressureGauge3D() {
       gaugeRef.current.rotation.y = Math.sin(clock.getElapsedTime() * 0.4) * 0.3;
     }
     if (needleRef.current) {
-      // Needle oscillates between positions
       needleRef.current.rotation.z = Math.sin(clock.getElapsedTime() * 0.8) * 0.8 - 0.5;
     }
   });
 
   return (
     <group ref={gaugeRef}>
-      {/* Gauge body - main cylinder */}
+      {/* Gauge body */}
       <mesh position={[0, 0, 0]}>
         <cylinderGeometry args={[1.2, 1.2, 0.2, 64]} />
         <meshStandardMaterial color="#1a1a1a" metalness={0.95} roughness={0.05} />
@@ -42,7 +47,7 @@ function PressureGauge3D() {
         <meshStandardMaterial color="#0066FF" metalness={0.8} roughness={0.1} emissive="#0033AA" emissiveIntensity={0.5} />
       </mesh>
       {/* Needle */}
-      <mesh ref={needleRef} position={[0, 0.3, 0.18]} rotation={[0, 0, 0]}>
+      <mesh ref={needleRef} position={[0, 0.3, 0.18]}>
         <boxGeometry args={[0.04, 0.7, 0.02]} />
         <meshStandardMaterial color="#FF2222" metalness={0.6} roughness={0.3} />
       </mesh>
@@ -135,9 +140,9 @@ export default function Hero() {
           </motion.ul>
         </div>
 
-        {/* Right 3D gauge */}
+        {/* Right 3D gauge - hidden on very small screens for performance */}
         <motion.div
-          className="h-[500px] md:h-[650px]"
+          className="h-[400px] md:h-[600px] hidden sm:block"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.2 }}
@@ -148,6 +153,22 @@ export default function Hero() {
             <pointLight position={[-3, -3, 3]} intensity={0.8} color="#0066FF" />
             <PressureGauge3D />
           </Canvas>
+        </motion.div>
+
+        {/* Mobile fallback - shown only on xs screens */}
+        <motion.div
+          className="flex sm:hidden items-center justify-center py-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+        >
+          <div className="w-40 h-40 rounded-full border-4 border-[#0066FF] flex items-center justify-center bg-[#F5F7FA]"
+            style={{ boxShadow: '0 0 40px rgba(0,102,255,0.2)' }}>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-[#0066FF]" style={{ fontFamily: 'Inter Tight, Inter, sans-serif' }}>5K+</div>
+              <div className="text-xs text-[#555] mt-1">Instruments Calibrated</div>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

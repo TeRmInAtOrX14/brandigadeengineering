@@ -1,10 +1,14 @@
 'use client';
-
-import { Canvas } from '@react-three/fiber';
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+
+const Canvas = dynamic(
+  () => import('@react-three/fiber').then((mod) => mod.Canvas),
+  { ssr: false }
+);
 
 function ExplodedGauge() {
   const part1 = useRef<THREE.Mesh>(null);
@@ -17,17 +21,14 @@ function ExplodedGauge() {
 
   return (
     <group>
-      {/* Part 1 - main body */}
       <mesh ref={part1} position={[-0.5, 0, 0]}>
         <cylinderGeometry args={[0.6, 0.6, 0.15, 32]} />
         <meshStandardMaterial color="#1a1a1a" metalness={0.95} roughness={0.05} />
       </mesh>
-      {/* Part 2 - face plate */}
       <mesh ref={part2} position={[0.5, 0, 0]}>
         <torusGeometry args={[0.55, 0.08, 16, 64]} />
         <meshStandardMaterial color="#0066FF" metalness={0.8} roughness={0.1} emissive="#0033AA" emissiveIntensity={0.3} />
       </mesh>
-      {/* Part 3 - needle */}
       <mesh position={[0, 0.2, 0.2]} rotation={[0, 0, 0.5]}>
         <boxGeometry args={[0.05, 0.6, 0.02]} />
         <meshStandardMaterial color="#FF3333" metalness={0.7} roughness={0.2} />
@@ -49,13 +50,16 @@ export default function About() {
           transition={{ duration: 0.8 }}
         >
           <p className="text-sm font-semibold tracking-widest text-[#0066FF] uppercase">About Us</p>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#0B0B0B] leading-tight" style={{ fontFamily: 'Inter Tight, Inter, sans-serif' }}>
+          <h2
+            className="text-4xl md:text-5xl font-bold text-[#0B0B0B] leading-tight"
+            style={{ fontFamily: 'Inter Tight, Inter, sans-serif' }}
+          >
             Engineering Accuracy.<br />Built on Trust.
           </h2>
           <p className="text-lg text-[#444] leading-relaxed">
             With decades of experience calibrating critical equipment across pharmaceutical, healthcare, and industrial sectors, Brandigade Engineering delivers precision you can rely on — backed by ISO-compliant processes and certified professionals.
           </p>
-          <div className="flex flex-wrap gap-4 pt-2">
+          <div className="flex flex-wrap gap-3 pt-2">
             {['ISO 9001 Certified', '5000+ Instruments', '24h Response', 'GMP Compliant'].map((tag) => (
               <span
                 key={tag}
@@ -67,9 +71,9 @@ export default function About() {
           </div>
         </motion.div>
 
-        {/* 3D side */}
+        {/* 3D side - disabled on mobile */}
         <motion.div
-          className="h-[400px] rounded-2xl overflow-hidden bg-[#0B0B0B]"
+          className="h-[380px] rounded-2xl overflow-hidden bg-[#0B0B0B] hidden sm:block"
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -77,10 +81,32 @@ export default function About() {
         >
           <Canvas camera={{ position: [0, 0, 3] }}>
             <ambientLight intensity={0.4} />
-            <directionalLight position={[2, 2, 2]} intensity={1.5} color="#ffffff" />
+            <directionalLight position={[2, 2, 2]} intensity={1.5} />
             <pointLight position={[-2, -2, 2]} intensity={0.8} color="#0066FF" />
             <ExplodedGauge />
           </Canvas>
+        </motion.div>
+
+        {/* Mobile fallback */}
+        <motion.div
+          className="flex sm:hidden rounded-2xl overflow-hidden bg-[#0B0B0B] p-8 items-center justify-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
+          <div className="grid grid-cols-2 gap-4 w-full">
+            {[
+              { val: '5000+', label: 'Instruments' },
+              { val: '98%', label: 'Satisfaction' },
+              { val: '24h', label: 'Response' },
+              { val: '100%', label: 'Compliant' },
+            ].map((s) => (
+              <div key={s.label} className="text-center">
+                <div className="text-2xl font-bold text-[#0066FF]">{s.val}</div>
+                <div className="text-xs text-[#888] mt-1">{s.label}</div>
+              </div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
